@@ -15,16 +15,17 @@ enum layers {
 #define HOME_S LSFT_T(KC_S)
 #define HOME_D LALT_T(KC_D)
 #define HOME_F KC_F
-#define HOME_G LT(_MOV, KC_G)
-#define HOME_V LGUI_T(KC_V)
+#define HOME_G LGUI_T(KC_G)
+#define HOME_V KC_V
+#define HOME_Z LT(_MOV, KC_Z)
 
 // Right-hand home row mods
 #define HOME_SC RCTL_T(KC_SCLN)
 #define HOME_L RSFT_T(KC_L)
 #define HOME_K LALT_T(KC_K)
 #define HOME_J KC_J
-#define HOME_H KC_H
-#define HOME_M RGUI_T(KC_M)
+#define HOME_H RGUI_T(KC_H)
+#define HOME_M KC_M
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -47,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ALPHA_QWERTY] = LAYOUT_split_3x5_3(
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    /**/  KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,
         HOME_A,  HOME_S,  HOME_D,  HOME_F,  HOME_G,  /**/  HOME_H,  HOME_J,  HOME_K,   HOME_L,  HOME_SC,
-        KC_Z,    KC_X,    KC_C,    HOME_V,  KC_B,    /**/  KC_N,    HOME_M,    KC_COMM,  KC_DOT,  KC_SLSH,
+        HOME_Z,  KC_X,    KC_C,    HOME_V,  KC_B,    /**/  KC_N,    HOME_M,    KC_COMM,  KC_DOT,  KC_SLSH,
 
         MO(_MOV),  MO(_NUM),  KC_LSFT,  /**/  MO(_SYM),  KC_SPACE,  XXXXXXX
     ),
