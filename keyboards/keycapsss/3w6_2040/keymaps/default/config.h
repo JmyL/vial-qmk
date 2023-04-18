@@ -29,3 +29,5 @@
 // #define QUICK_TAP_TERM 0
 // Time (in ms) before the one shot key is released
 #define ONESHOT_TIMEOUT 100
+
+#define COMBO_COUNT 1

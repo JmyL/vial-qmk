@@ -37,9 +37,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ALPHA_QWERTY] = LAYOUT_split_3x5_3(
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    /**/  KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,
         HOME_A,  HOME_S,  HOME_D,  HOME_F,  HOME_G,  /**/  HOME_H,  HOME_J,  HOME_K,   HOME_L,  HOME_SC,
-        HOME_Z,  KC_X,    KC_C,    HOME_V,  KC_B,    /**/  KC_N,    HOME_M,    KC_COMM,  KC_DOT,  KC_SLSH,
+        HOME_Z,  KC_X,    KC_C,    HOME_V,  KC_B,    /**/  KC_N,    HOME_M,  KC_COMM,  KC_DOT,  KC_SLSH,
 
-        MO(_MOV),  MO(_NUM),  KC_LSFT,  /**/  MO(_SYM),  HOME_SPACE,  XXXXXXX
+        XXXXXXX,  MO(_NUM),  KC_LSFT,  /**/  MO(_SYM),  HOME_SPACE,  XXXXXXX
     ),
     [_NUM] = LAYOUT_split_3x5_3(
         KC_1,     KC_2,       KC_3,     KC_4,     KC_5,        /**/  KC_6,     KC_7,     KC_8,     KC_9,     KC_0,
@@ -76,9 +76,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _NUM, _SYM, _CFG);
 }
 
-// const uint16_t PROGMEM test_combo1[] = {KC_A, KC_B, COMBO_END};
+const uint16_t PROGMEM test_combo1[] = {MO(_NUM), KC_LSFT, COMBO_END};
 // const uint16_t PROGMEM test_combo2[] = {KC_C, KC_D, COMBO_END};
-// combo_t key_combos[COMBO_COUNT] = {
-//     COMBO(test_combo1, KC_ESC),
-//     COMBO(test_combo2, LCTL(KC_Z)), // keycodes with modifiers are possible too!
-// };
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(test_combo1, KC_RALT),
+    // COMBO(test_combo2, LCTL(KC_Z)), // keycodes with modifiers are possible too!
+};
