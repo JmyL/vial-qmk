@@ -76,9 +76,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _NUM, _SYM, _CFG);
 }
 
-const uint16_t PROGMEM test_combo1[] = {MO(_NUM), KC_LSFT, COMBO_END};
-// const uint16_t PROGMEM test_combo2[] = {KC_C, KC_D, COMBO_END};
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(test_combo1, KC_RALT),
-    // COMBO(test_combo2, LCTL(KC_Z)), // keycodes with modifiers are possible too!
+const uint16_t PROGMEM test_combo1[]           = {MO(_NUM), KC_LSFT, COMBO_END};
+const uint16_t PROGMEM test_combo2[]           = {MO(_SYM), HOME_SPACE, COMBO_END};
+combo_t                key_combos[COMBO_COUNT] = {
+                   COMBO(test_combo1, KC_LALT), COMBO(test_combo2, KC_RALT), // keycodes with modifiers are possible too!
 };
