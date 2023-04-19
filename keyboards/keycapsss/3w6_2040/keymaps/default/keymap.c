@@ -15,7 +15,7 @@ enum layers {
 // Left-hand home row mods
 #define HOME_A LCTL_T(KC_A)
 #define HOME_S LSFT_T(KC_S)
-#define HOME_D LALT_T(KC_D)
+#define HOME_D KC_D
 #define HOME_F KC_F
 #define HOME_G KC_G
 #define HOME_V KC_V
@@ -25,8 +25,8 @@ enum layers {
 
 // Right-hand home row mods
 #define HOME_SC RCTL_T(KC_SCLN)
-#define HOME_L RSFT_T(KC_L)
-#define HOME_K LALT_T(KC_K)
+#define HOME_L KC_L
+#define HOME_K KC_K
 #define HOME_J KC_J
 #define HOME_H KC_H
 #define HOME_M KC_M
