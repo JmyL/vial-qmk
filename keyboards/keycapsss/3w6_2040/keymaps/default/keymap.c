@@ -1,4 +1,6 @@
 // Copyright 2021 weteor | 2022 Conor Burns (@Conor-Burns)
+// Copyright 2023 Ben Roe (@keycapsss)
+// Copyright 2023 Tom Barnes (@keyboard-magpie)
 // SPDX-License-Identifier: GPL-2.0-or-later
 // Add R_ALT as combo
 // Add R_GUI to space.
@@ -79,6 +81,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 const uint16_t PROGMEM test_combo1[]           = {MO(_NUM), KC_LSFT, COMBO_END};
 const uint16_t PROGMEM test_combo2[]           = {MO(_SYM), HOME_SPACE, COMBO_END};
-combo_t                key_combos[COMBO_COUNT] = {
-                   COMBO(test_combo1, KC_LALT), COMBO(test_combo2, KC_RALT), // keycodes with modifiers are possible too!
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(test_combo1, KC_LALT), COMBO(test_combo2, KC_RALT), // keycodes with modifiers are possible too!
 };
