@@ -17,20 +17,20 @@ enum layers {
 // Left-hand home row mods
 #define HOME_A LCTL_T(KC_A)
 #define HOME_S LSFT_T(KC_S)
-#define HOME_D LALT_T(KC_D)
-#define HOME_F LGUI_T(KC_F)
-#define HOME_G RALT_T(KC_G)
+#define HOME_D RALT_T(KC_D)
+#define HOME_F LALT_T(KC_F)
+#define HOME_G KC_G
 #define HOME_V KC_V
 #define HOME_C KC_C
 #define HOME_Z LT(_MOV, KC_Z)
 
-#define HOME_SPACE RALT_T(KC_SPACE)
+#define HOME_SPACE LGUI_T(KC_SPACE)
 
 // Right-hand home row mods
 #define HOME_SC RCTL_T(KC_SCLN)
 #define HOME_L RSFT_T(KC_L)
-#define HOME_K LALT_T(KC_K)
-#define HOME_J RGUI_T(KC_J)
+#define HOME_K RALT_T(KC_K)
+#define HOME_J LALT_T(KC_J)
 #define HOME_H KC_H
 #define HOME_M KC_M
 
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_CFG] = LAYOUT_split_3x5_3(
         KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,/**/    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,/**/  XXXXXXX,  XXXXXXX,  KC_BRID,  KC_BRIU,  XXXXXXX,
+        KC_F11,   KC_F12,   XXXXXXX,  XXXXXXX,  XXXXXXX,/**/  XXXXXXX,  XXXXXXX,  KC_BRID,  KC_BRIU,  XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,/**/  XXXXXXX,  KC_MUTE,  KC_VOLD,  KC_VOLU,  XXXXXXX,
 
         _______,  _______,  _______,/**/  _______,  _______,  XXXXXXX
@@ -79,8 +79,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _NUM, _SYM, _CFG);
 }
 
-const uint16_t PROGMEM test_combo1[]           = {MO(_NUM), KC_LSFT, COMBO_END};
-const uint16_t PROGMEM test_combo2[]           = {MO(_SYM), HOME_SPACE, COMBO_END};
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(test_combo1, KC_LALT), COMBO(test_combo2, KC_RALT), // keycodes with modifiers are possible too!
-};
+// const uint16_t PROGMEM test_combo1[]           = {MO(_NUM), KC_LSFT, COMBO_END};
+// const uint16_t PROGMEM test_combo2[]           = {MO(_SYM), HOME_SPACE, COMBO_END};
+// combo_t key_combos[COMBO_COUNT] = {
+//     COMBO(test_combo1, KC_LALT), COMBO(test_combo2, KC_RALT), // keycodes with modifiers are possible too!
+// };
+//
+combo_t key_combos[0] = {};
