@@ -34,6 +34,42 @@ enum layers {
 #define HOME_H KC_H
 #define HOME_M KC_M
 
+
+// enum custom_keycodes {
+//     KC_COMM2 = SAFE_RANGE,
+//     KC_DOT2
+// };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_COMM:
+            if (record->event.pressed) {
+                if (get_mods() & MOD_MASK_SHIFT) {
+                    // Send hyphen (-) if Shift is pressed
+                    unregister_mods(MOD_MASK_SHIFT);  // Temporarily unregister Shift
+                    tap_code(KC_MINS);
+                    register_mods(MOD_MASK_SHIFT);    // Restore Shift
+                } else {
+                    // Send semicolon if Shift is not pressed
+                    tap_code(KC_COMM);
+                }
+            }
+            return false;  // Skip further processing
+        case KC_DOT:
+            if (record->event.pressed) {
+                if (get_mods() & MOD_MASK_SHIFT) {
+                    // Send underscore (_) if Shift is pressed
+                    tap_code(KC_MINS);
+                } else {
+                    // Send semicolon if Shift is not pressed
+                    tap_code(KC_DOT);
+                }
+            }
+            return false;  // Skip further processing
+    }
+    return true;
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // clang-format off
