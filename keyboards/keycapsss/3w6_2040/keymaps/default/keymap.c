@@ -27,9 +27,9 @@ enum layers {
 #define HOME_SPACE LGUI_T(KC_SPACE)
 
 // Right-hand home row mods
-#define HOME_SC RCTL_T(KC_SCLN)
-#define HOME_L RSFT_T(KC_L)
-#define HOME_K RALT_T(KC_K)
+#define HOME_SC LCTL_T(KC_SCLN)
+#define HOME_L LSFT_T(KC_L)
+#define HOME_K RCTL_T(KC_K)
 #define HOME_J LALT_T(KC_J)
 #define HOME_H KC_H
 #define HOME_M KC_M
