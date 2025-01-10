@@ -10,6 +10,7 @@ enum layers {
     _ALPHA_QWERTY = 0,
     _NUM,
     _SYM,
+    _SHIFT,
     _MOV,
     _CFG,
 };
@@ -27,58 +28,26 @@ enum layers {
 #define HOME_SPACE LGUI_T(KC_SPACE)
 
 // Right-hand home row mods
-#define HOME_SC LCTL_T(KC_SCLN)
+#define HOME_SCLN LCTL_T(KC_SCLN)
 #define HOME_L LSFT_T(KC_L)
 #define HOME_K RCTL_T(KC_K)
 #define HOME_J LALT_T(KC_J)
 #define HOME_H KC_H
 #define HOME_M KC_M
 
-
-// enum custom_keycodes {
-//     KC_COMM2 = SAFE_RANGE,
-//     KC_DOT2
-// };
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_COMM:
-            if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    // Send hyphen (-) if Shift is pressed
-                    unregister_mods(MOD_MASK_SHIFT);  // Temporarily unregister Shift
-                    tap_code(KC_MINS);
-                    register_mods(MOD_MASK_SHIFT);    // Restore Shift
-                } else {
-                    // Send semicolon if Shift is not pressed
-                    tap_code(KC_COMM);
-                }
-            }
-            return false;  // Skip further processing
-        case KC_DOT:
-            if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    // Send underscore (_) if Shift is pressed
-                    tap_code(KC_MINS);
-                } else {
-                    // Send semicolon if Shift is not pressed
-                    tap_code(KC_DOT);
-                }
-            }
-            return false;  // Skip further processing
-    }
-    return true;
-}
+enum custom_keycodes {
+    SPACE_UNDERSCORE = SAFE_RANGE,
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // clang-format off
     [_ALPHA_QWERTY] = LAYOUT_split_3x5_3(
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    /**/  KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,
-        HOME_A,  HOME_S,  HOME_D,  HOME_F,  HOME_G,  /**/  HOME_H,  HOME_J,  HOME_K,   HOME_L,  HOME_SC,
+        HOME_A,  HOME_S,  HOME_D,  HOME_F,  HOME_G,  /**/  HOME_H,  HOME_J,  HOME_K,   HOME_L,  HOME_SCLN,
         HOME_Z,  KC_X,    HOME_C,  HOME_V,  KC_B,    /**/  KC_N,    HOME_M,  KC_COMM,  KC_DOT,  KC_SLSH,
 
-        XXXXXXX,  MO(_NUM),  KC_LSFT,  /**/  MO(_SYM),  HOME_SPACE,  XXXXXXX
+        XXXXXXX,  MO(_NUM),  MO(_SHIFT),  /**/  MO(_SYM),  HOME_SPACE,  XXXXXXX
     ),
     [_NUM] = LAYOUT_split_3x5_3(
         KC_1,     KC_2,       KC_3,     KC_4,     KC_5,        /**/  KC_6,     KC_7,     KC_8,     KC_9,     KC_0,
@@ -93,6 +62,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_BSLS,  KC_PIPE,  KC_TILD,  KC_0,     KC_LCBR,/**/  KC_RCBR,  KC_EQL,  KC_LT,    KC_GT,    KC_QUES,
 
         _______,  _______,  _______,/**/  _______,  _______,  XXXXXXX
+    ),
+    [_SHIFT] = LAYOUT_split_3x5_3(
+        S(KC_Q),   S(KC_W),   S(KC_E),   S(KC_R),   S(KC_T),   /**/  S(KC_Y),   S(KC_U),   S(KC_I),    S(KC_O),   S(KC_P),
+        S(KC_A),   S(KC_S),   S(KC_D),   S(KC_F),   S(KC_G),   /**/  S(KC_H),   S(KC_J),   S(KC_K),    S(KC_L),   S(KC_SCLN),
+        S(KC_Z),   S(KC_X),   S(KC_C),   S(KC_V),   S(KC_B),   /**/  S(KC_N),   S(KC_M),   S(KC_COMM), S(KC_DOT), S(KC_SLSH),
+
+        XXXXXXX,  MO(_NUM),  MO(_SHIFT),  /**/  MO(_SYM),  KC_UNDS,  XXXXXXX
     ),
     [_MOV] = LAYOUT_split_3x5_3(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,/**/  XXXXXXX,  KC_ACL0,  KC_ACL1,  KC_ACL2,  XXXXXXX,
@@ -112,13 +88,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _NUM, _SYM, _CFG);
+    return update_tri_layer_state(state, _SHIFT, _SYM, _CFG);
 }
 
-// const uint16_t PROGMEM test_combo1[]           = {MO(_NUM), KC_LSFT, COMBO_END};
-// const uint16_t PROGMEM test_combo2[]           = {MO(_SYM), HOME_SPACE, COMBO_END};
+// const uint16_t PROGMEM test_combo1[]           = {KC_J, KC_K, COMBO_END};
+// // const uint16_t PROGMEM test_combo2[]           = {MO(_SYM), HOME_SPACE, COMBO_END};
 // combo_t key_combos[COMBO_COUNT] = {
-//     COMBO(test_combo1, KC_LALT), COMBO(test_combo2, KC_RALT), // keycodes with modifiers are possible too!
+//     COMBO(test_combo1, KC_MINS),
 // };
 //
-combo_t key_combos[0] = {};
+// combo_t key_combos[0] = {};
