@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,   S(KC_TAB),  KC_DEL,   KC_BSPC,  S(KC_F10),   /**/  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_ENTER,
         C(KC_Z),  C(KC_X),    C(KC_C),  C(KC_V),  C(KC_V),  /**/  KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   XXXXXXX,
 
-        _______,  _______,  _______,  /**/   S(KC_SPACE),  KC_ESC,  XXXXXXX
+        _______,  _______,  _______,  /**/   _______,  KC_ESC,  XXXXXXX
     ),
     [_SYM] = LAYOUT_split_3x5_3(
         KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,/**/  KC_CIRC,  KC_AMPR, KC_ASTR,  KC_LPRN,  KC_RPRN,
@@ -65,10 +65,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_SHIFT] = LAYOUT_split_3x5_3(
         S(KC_Q),   S(KC_W),   S(KC_E),   S(KC_R),   S(KC_T),   /**/  S(KC_Y),   S(KC_U),   S(KC_I),    S(KC_O),   S(KC_P),
-        S(KC_A),   S(KC_S),   S(KC_D),   S(KC_F),   S(KC_G),   /**/  S(KC_H),   S(KC_J),   S(KC_K),    S(KC_L),   S(KC_SCLN),
+        S(KC_A),   S(KC_S),   S(KC_D),   S(KC_F),   S(KC_G),   /**/  S(KC_H),   S(KC_J),   S(KC_K),    S(KC_L),   KC_UNDS,
         S(KC_Z),   S(KC_X),   S(KC_C),   S(KC_V),   S(KC_B),   /**/  S(KC_N),   S(KC_M),   S(KC_COMM), S(KC_DOT), S(KC_SLSH),
 
-        XXXXXXX,  MO(_NUM),  MO(_SHIFT),  /**/  MO(_SYM),  KC_UNDS,  XXXXXXX
+        XXXXXXX,  MO(_NUM),  MO(_SHIFT),  /**/  MO(_SYM),  S(KC_SPACE),  XXXXXXX
     ),
     [_MOV] = LAYOUT_split_3x5_3(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,/**/  XXXXXXX,  KC_ACL0,  KC_ACL1,  KC_ACL2,  XXXXXXX,
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _SHIFT, _SYM, _CFG);
+    return update_tri_layer_state(state, _NUM, _SYM, _CFG);
 }
 
 // const uint16_t PROGMEM test_combo1[]           = {KC_J, KC_K, COMBO_END};
